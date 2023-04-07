@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <script src="main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="header">
+        <p class="logo">✅ ToDo List</p>
+      </div>
+      <div class="main">
+        <div class="side-bar">
+          <div class="priority-list">
+            <button class="top-priority">⬆️ Top Priority</button>
+            <button>📅 Today</button>
+            <button>🗓️ This Week</button>
+          </div>
+          <div class="projects">Projects</div>
+          <div class="project-list"></div>
+          <button id="add-project-btn">+ Add Project</button>
+        </div>
+        <form class="form">
+          <input type="text" id="title" placeholder="Title" />
+          <input type="text" id="description" placeholder="Description" />
+          <div class="priority-checkbox">
+            <label for="priority">Priority:</label>
+            <input type="checkbox" id="priority" />
+          </div>
+          <div class="form-btns">
+            <button id="add-btn">Add</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+          </div>
+        </form>
+        <form class="edit-form">
+          <input type="text" id="edit-title" placeholder="Title" />
+          <input type="text" id="edit-description" placeholder="Description" />
+          <div class="priority-checkbox">
+            <label for="edit-priority">Priority:</label>
+            <input type="checkbox" id="edit-priority" />
+          </div>
+          <div class="edit-form-btn">
+            <button type="button" id="edit-btn">Edit</button>
+            <button type="button" id="edit-cancel-btn">Cancel</button>
+          </div>
+        </form>
+        <div class="priority-details"></div>
+        <div class="project-details">
+          <div class="title"></div>
+          <div class="description"></div>
+          <div class="priority"></div>
+          <div class="deadline"></div>
+          <div class="checklist-div"></div>
+          <div class="notes-div"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
