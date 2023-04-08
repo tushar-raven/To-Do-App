@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { projectArray } from "./form";
 import format from "date-fns/format";
+=======
+import projectArray from "./form";
+import cancelNote from "./notesUI";
+>>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 
 const detailsRender = (projectArray, uniqueID) => {
   document.querySelector(".project-details").style.display = "flex";
@@ -55,8 +60,12 @@ const detailsRender = (projectArray, uniqueID) => {
 
     notesButton = document.createElement("button");
     notesButton.textContent = "+ Add Notes";
+<<<<<<< HEAD
     notesButton.className = "add-note";
     notesButton.addEventListener("click", createNotes);
+=======
+    notesButton.addEventListener("click", createNotes(notesButton));
+>>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
     notesButtonDiv.appendChild(notesButton);
   }
 
@@ -95,6 +104,7 @@ const createChecklist = () => {
   checklistDiv.append(checklistForm);
 };
 
+<<<<<<< HEAD
 const createNotes = () => {
   notesButton.remove();
 
@@ -118,6 +128,8 @@ const createNotes = () => {
   notesButtonDiv.append(notesForm);
 };
 
+=======
+>>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 //-------------------------------------------------------------------------------------------------
 
 const addTask = (taskID) => {
@@ -173,6 +185,7 @@ const removeTask = (taskID, taskArray) => {
 
 //-------------------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 const addNote = (noteID) => {
   const note = notesInput.value;
   if (!note) {
@@ -181,16 +194,27 @@ const addNote = (noteID) => {
   }
   projectArray[noteID]["notes"].push(note);
   console.log(projectArray);
+=======
+const createNotes = (notesButton) => {
+  notesButton.remove();
+>>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 
-  noteRender(projectArray[noteID]["notes"]);
-};
+  notesForm = document.createElement("div");
 
-const cancelNote = () => {
-  notesInput.remove();
-  notesAddButton.remove();
-  notesCancelButton.remove();
+  notesInput = document.createElement("textarea");
 
-  notesButtonDiv.append(notesButton);
+  notesAddButton = document.createElement("button");
+  notesAddButton.textContent = "Add Note";
+  notesAddButton.addEventListener("click", () => {
+    addNote(notesButtonDiv.id);
+  });
+
+  notesCancelButton = document.createElement("button");
+  notesCancelButton.textContent = "Cancel Note";
+  notesCancelButton.addEventListener("click", cancelNote);
+
+  notesForm.append(notesInput, notesAddButton, notesCancelButton);
+  notesButtonDiv.append(notesForm);
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -238,8 +262,8 @@ let taskCancelButton;
 let taskName;
 let taskDiv;
 
-let notesButtonDiv;
 let notesButton;
+let notesButtonDiv;
 let notesForm;
 let notesInput;
 let notesAddButton;
