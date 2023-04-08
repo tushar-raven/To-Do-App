@@ -1,10 +1,5 @@
 import "./style.css";
 import openForm from "./form";
-
-// render details on the page
-
-// Checklist UI
-
 const taskRender = (taskArray) => {
   checklistDiv.innerHTML = "";
 
@@ -37,36 +32,6 @@ const removeTask = (taskID, taskArray) => {
 
 //Notes UI
 
-const noteRender = (notesArray) => {
-  notesButtonDiv.innerHTML = "";
-
-  for (let i = 0; i < notesArray.length; i++) {
-    noteDiv = document.createElement("div");
-    noteDiv.className = "note-div";
-    noteDiv.setAttribute("id", `${i}`);
-
-    const deleteNote = document.createElement("div");
-    deleteNote.textContent = "×";
-    deleteNote.addEventListener("click", () => {
-      removeNote(noteDiv.id, notesArray);
-    });
-
-    noteName = document.createElement("div");
-    noteName.textContent = notesArray[i];
-
-    noteDiv.append(deleteNote, noteName);
-    notesButtonDiv.append(noteDiv);
-  }
-
-  notesButtonDiv.append(notesButton);
-};
-
-const removeNote = (noteID, notesArray) => {
-  notesArray.splice(noteID, 1);
-  noteRender(notesArray);
-  console.log(notesArray);
-};
-
 // priority button
 
 const topPriority = () => {
@@ -98,10 +63,6 @@ const topPriority = () => {
 
 let taskName;
 let taskDiv;
-
-let noteName;
-
-let noteDiv;
 
 //forms
 
