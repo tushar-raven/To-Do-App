@@ -17,7 +17,7 @@
         <div class="side-bar">
           <div class="priority-list">
             <button class="top-priority">⬆️ Top Priority</button>
-            <button>📅 Today</button>
+            <button class="today">📅 Today</button>
             <button>🗓️ This Week</button>
           </div>
           <div class="projects">Projects</div>
@@ -31,6 +31,10 @@
             <label for="priority">Priority:</label>
             <input type="checkbox" id="priority" />
           </div>
+          <div class="deadline-box">
+            <label for="date">Deadline</label>
+            <input type="date" id="date" />
+          </div>
           <div class="form-btns">
             <button id="add-btn">Add</button>
             <button type="button" id="cancel-btn">Cancel</button>
@@ -42,6 +46,10 @@
           <div class="priority-checkbox">
             <label for="edit-priority">Priority:</label>
             <input type="checkbox" id="edit-priority" />
+          </div>
+          <div class="edit-deadline-box">
+            <label for="edit-date">Deadline</label>
+            <input type="date" id="edit-date" />
           </div>
           <div class="edit-form-btn">
             <button type="button" id="edit-btn">Edit</button>
