@@ -1,4 +1,5 @@
 import projectNameRender from "./sidebar";
+import { format } from "date-fns";
 
 const openForm = () => {
   addProjectForm.style.display = "flex";
@@ -22,6 +23,9 @@ const addFormDetails = (e) => {
   const title = document.querySelector("#title").value;
   const description = document.querySelector("#description").value;
   const priority = document.querySelector("#priority").checked;
+  const d = document.querySelector("#date").value;
+
+  let deadline = format(new Date(d), "dd/MM/yyyy");
 
   if (!title || !description) {
     alert("please fill all the details");
@@ -31,7 +35,12 @@ const addFormDetails = (e) => {
   addProjectForm.reset();
   addProjectForm.style.display = "none";
 
-  const project = Project(`${title}`, `${description}`, `${priority}`);
+  const project = Project(
+    `${title}`,
+    `${description}`,
+    `${priority}`,
+    `${deadline}`
+  );
 
   projectArray.push(project);
   console.log(projectArray);
@@ -45,11 +54,11 @@ const Project = (
   title,
   description,
   priority,
+  deadline,
   checklist = [],
-  notes = [],
-  deadline
+  notes = []
 ) => {
-  return { title, description, priority, checklist, notes, deadline };
+  return { title, description, priority, deadline, checklist, notes };
 };
 
 const addProjectForm = document.querySelector(".form");

@@ -7,14 +7,17 @@ const detailsRender = (projectArray, uniqueID) => {
   const showTitle = document.querySelector(".title");
   const showDescription = document.querySelector(".description");
   const showPriority = document.querySelector(".priority");
+  const showDeadline = document.querySelector(".deadline");
 
   if (uniqueID === "x") {
     showTitle.textContent = "";
     showDescription.textContent = "";
     showPriority.textContent = "";
+    showDeadline.textContent = "";
   } else {
     showTitle.textContent = projectArray[uniqueID]["title"];
     showDescription.textContent = projectArray[uniqueID]["description"];
+    showDeadline.textContent = projectArray[uniqueID]["deadline"];
 
     if (projectArray[uniqueID]["priority"] === "true") {
       showPriority.textContent = "Priority: true";
@@ -119,6 +122,38 @@ const cancelTask = () => {
   checklistDiv.append(checklistButton);
 };
 
+//---------------------------------------------------------------------------------------------------
+
+const taskRender = (taskArray) => {
+  checklistDiv.innerHTML = "";
+
+  for (let i = 0; i < taskArray.length; i++) {
+    taskDiv = document.createElement("div");
+    taskDiv.className = "task-div";
+    taskDiv.setAttribute("id", `${i}`);
+
+    taskName = document.createElement("div");
+    taskName.textContent = taskArray[i];
+
+    const deleteTask = document.createElement("div");
+    deleteTask.textContent = "×";
+    deleteTask.addEventListener("click", () => {
+      removeTask(taskDiv.id, taskArray);
+    });
+
+    taskDiv.append(taskName, deleteTask);
+    checklistDiv.append(taskDiv);
+  }
+
+  checklistDiv.append(checklistButton);
+};
+
+const removeTask = (taskID, taskArray) => {
+  taskArray.splice(taskID, 1);
+  taskRender(taskArray);
+  console.log(taskArray);
+};
+
 //-------------------------------------------------------------------------------------------------
 
 const addNote = (noteID) => {
@@ -139,12 +174,46 @@ const cancelNote = () => {
 
 //-------------------------------------------------------------------------------------------------
 
+const noteRender = (notesArray) => {
+  notesButtonDiv.innerHTML = "";
+
+  for (let i = 0; i < notesArray.length; i++) {
+    noteDiv = document.createElement("div");
+    noteDiv.className = "note-div";
+    noteDiv.setAttribute("id", `${i}`);
+
+    const deleteNote = document.createElement("div");
+    deleteNote.textContent = "×";
+    deleteNote.addEventListener("click", () => {
+      removeNote(noteDiv.id, notesArray);
+    });
+
+    noteName = document.createElement("div");
+    noteName.textContent = notesArray[i];
+
+    noteDiv.append(deleteNote, noteName);
+    notesButtonDiv.append(noteDiv);
+  }
+
+  notesButtonDiv.append(notesButton);
+};
+
+const removeNote = (noteID, notesArray) => {
+  notesArray.splice(noteID, 1);
+  noteRender(notesArray);
+  console.log(notesArray);
+};
+
+//------------------------------------------------------------------------------------------------------
+
 let checklistDiv;
 let checklistButton;
 let checklistForm;
 let taskNameInput;
 let taskAddButton;
 let taskCancelButton;
+let taskName;
+let taskDiv;
 
 let notesButtonDiv;
 let notesButton;
@@ -152,5 +221,7 @@ let notesForm;
 let notesInput;
 let notesAddButton;
 let notesCancelButton;
+let noteName;
+let noteDiv;
 
 export default detailsRender;

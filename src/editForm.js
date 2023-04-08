@@ -1,3 +1,6 @@
+import { projectArray } from "./form";
+import projectNameRender from "./sidebar";
+
 const openEditForm = (uniqueID) => {
   editProjectForm.style.display = "flex";
 
