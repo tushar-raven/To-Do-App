@@ -182,22 +182,15 @@ const addNote = (noteID) => {
   projectArray[noteID]["notes"].push(note);
   console.log(projectArray);
 
-  notesForm = document.createElement("div");
+  noteRender(projectArray[noteID]["notes"]);
+};
 
-  notesInput = document.createElement("textarea");
+const cancelNote = () => {
+  notesInput.remove();
+  notesAddButton.remove();
+  notesCancelButton.remove();
 
-  notesAddButton = document.createElement("button");
-  notesAddButton.textContent = "Add Note";
-  notesAddButton.addEventListener("click", () => {
-    addNote(notesButtonDiv.id);
-  });
-
-  notesCancelButton = document.createElement("button");
-  notesCancelButton.textContent = "Cancel Note";
-  notesCancelButton.addEventListener("click", cancelNote);
-
-  notesForm.append(notesInput, notesAddButton, notesCancelButton);
-  notesButtonDiv.append(notesForm);
+  notesButtonDiv.append(notesButton);
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -245,8 +238,8 @@ let taskCancelButton;
 let taskName;
 let taskDiv;
 
-let notesButton;
 let notesButtonDiv;
+let notesButton;
 let notesForm;
 let notesInput;
 let notesAddButton;
