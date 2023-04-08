@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { projectArray } from "./form";
 import format from "date-fns/format";
-=======
-import projectArray from "./form";
-import cancelNote from "./notesUI";
->>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 
 const detailsRender = (projectArray, uniqueID) => {
   document.querySelector(".project-details").style.display = "flex";
@@ -60,12 +55,8 @@ const detailsRender = (projectArray, uniqueID) => {
 
     notesButton = document.createElement("button");
     notesButton.textContent = "+ Add Notes";
-<<<<<<< HEAD
     notesButton.className = "add-note";
     notesButton.addEventListener("click", createNotes);
-=======
-    notesButton.addEventListener("click", createNotes(notesButton));
->>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
     notesButtonDiv.appendChild(notesButton);
   }
 
@@ -104,7 +95,6 @@ const createChecklist = () => {
   checklistDiv.append(checklistForm);
 };
 
-<<<<<<< HEAD
 const createNotes = () => {
   notesButton.remove();
 
@@ -128,8 +118,6 @@ const createNotes = () => {
   notesButtonDiv.append(notesForm);
 };
 
-=======
->>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 //-------------------------------------------------------------------------------------------------
 
 const addTask = (taskID) => {
@@ -185,7 +173,6 @@ const removeTask = (taskID, taskArray) => {
 
 //-------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 const addNote = (noteID) => {
   const note = notesInput.value;
   if (!note) {
@@ -194,10 +181,6 @@ const addNote = (noteID) => {
   }
   projectArray[noteID]["notes"].push(note);
   console.log(projectArray);
-=======
-const createNotes = (notesButton) => {
-  notesButton.remove();
->>>>>>> 7e4f561840a3030717e89d75246d26ee7528cf89
 
   notesForm = document.createElement("div");
 
