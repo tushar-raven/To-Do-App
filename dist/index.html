@@ -13,50 +13,63 @@
       <div class="header">
         <p class="logo">✅ ToDo List</p>
       </div>
+
       <div class="main">
         <div class="side-bar">
           <div class="priority-list">
             <button class="top-priority">⬆️ Top Priority</button>
             <button class="today">📅 Today</button>
-            <button>🗓️ This Week</button>
+            <button class="week">🗓️ This Week</button>
           </div>
           <div class="projects">Projects</div>
           <div class="project-list"></div>
           <button id="add-project-btn">+ Add Project</button>
         </div>
-        <form class="form">
-          <input type="text" id="title" placeholder="Title" />
-          <input type="text" id="description" placeholder="Description" />
-          <div class="priority-checkbox">
-            <label for="priority">Priority:</label>
-            <input type="checkbox" id="priority" />
-          </div>
-          <div class="deadline-box">
-            <label for="date">Deadline</label>
-            <input type="date" id="date" />
-          </div>
-          <div class="form-btns">
-            <button id="add-btn">Add</button>
-            <button type="button" id="cancel-btn">Cancel</button>
-          </div>
-        </form>
-        <form class="edit-form">
-          <input type="text" id="edit-title" placeholder="Title" />
-          <input type="text" id="edit-description" placeholder="Description" />
-          <div class="priority-checkbox">
-            <label for="edit-priority">Priority:</label>
-            <input type="checkbox" id="edit-priority" />
-          </div>
-          <div class="edit-deadline-box">
-            <label for="edit-date">Deadline</label>
-            <input type="date" id="edit-date" />
-          </div>
-          <div class="edit-form-btn">
-            <button type="button" id="edit-btn">Edit</button>
-            <button type="button" id="edit-cancel-btn">Cancel</button>
-          </div>
-        </form>
+
+        <div class="form-box">
+          <form class="form">
+            <input type="text" id="title" placeholder="Title" />
+            <input type="text" id="description" placeholder="Description" />
+            <div class="deadline-box">
+              <label for="date">Deadline: </label>
+              <input type="date" id="date" />
+            </div>
+            <div class="priority-checkbox">
+              <label for="priority">Priority:</label>
+              <input type="checkbox" id="priority" />
+            </div>
+            <div class="form-btn">
+              <button id="add-btn">Add</button>
+              <button type="button" id="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="edit-form-box">
+          <form class="edit-form">
+            <input type="text" id="edit-title" placeholder="Title" />
+            <input
+              type="text"
+              id="edit-description"
+              placeholder="Description"
+            />
+            <div class="edit-deadline-box">
+              <label for="edit-date">Deadline: </label>
+              <input type="date" id="edit-date" />
+            </div>
+            <div class="priority-checkbox">
+              <label for="edit-priority">Priority:</label>
+              <input type="checkbox" id="edit-priority" />
+            </div>
+            <div class="edit-form-btn">
+              <button type="button" id="edit-btn">Edit</button>
+              <button type="button" id="edit-cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
         <div class="priority-details"></div>
+
         <div class="project-details">
           <div class="title"></div>
           <div class="description"></div>

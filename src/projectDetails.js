@@ -1,7 +1,8 @@
 import { projectArray } from "./form";
+import format from "date-fns/format";
 
 const detailsRender = (projectArray, uniqueID) => {
-  document.querySelector(".project-details").style.display = "block";
+  document.querySelector(".project-details").style.display = "flex";
   document.querySelector(".priority-details").style.display = "none";
 
   const showTitle = document.querySelector(".title");
@@ -17,12 +18,16 @@ const detailsRender = (projectArray, uniqueID) => {
   } else {
     showTitle.textContent = projectArray[uniqueID]["title"];
     showDescription.textContent = projectArray[uniqueID]["description"];
-    showDeadline.textContent = projectArray[uniqueID]["deadline"];
+
+    let deadline = projectArray[uniqueID]["deadline"];
+    deadline = format(new Date(deadline), "dd/MM/yyyy");
+
+    showDeadline.textContent = `Deadline: ${deadline}`;
 
     if (projectArray[uniqueID]["priority"] === "true") {
-      showPriority.textContent = "Priority: true";
+      showPriority.textContent = "Priority: Yes";
     } else {
-      showPriority.textContent = "Priority: false";
+      showPriority.textContent = "Priority: No";
     }
   }
 
@@ -44,11 +49,13 @@ const detailsRender = (projectArray, uniqueID) => {
 
     checklistButton = document.createElement("button");
     checklistButton.textContent = "+ Add Task";
+    checklistButton.className = "add-task";
     checklistButton.addEventListener("click", createChecklist);
     checklistDiv.appendChild(checklistButton);
 
     notesButton = document.createElement("button");
     notesButton.textContent = "+ Add Notes";
+    notesButton.className = "add-note";
     notesButton.addEventListener("click", createNotes);
     notesButtonDiv.appendChild(notesButton);
   }
@@ -73,6 +80,7 @@ const createChecklist = () => {
 
   taskAddButton = document.createElement("button");
   taskAddButton.textContent = "Add Task";
+  taskAddButton.className = "task-add-btn";
   taskAddButton.addEventListener("click", () => {
     console.log(checklistDiv.id);
     addTask(checklistDiv.id);
@@ -80,6 +88,7 @@ const createChecklist = () => {
 
   taskCancelButton = document.createElement("button");
   taskCancelButton.textContent = "Cancel Task";
+  taskCancelButton.className = "task-cancel-btn";
   taskCancelButton.addEventListener("click", cancelTask);
 
   checklistForm.append(taskNameInput, taskAddButton, taskCancelButton);
@@ -95,12 +104,14 @@ const createNotes = () => {
 
   notesAddButton = document.createElement("button");
   notesAddButton.textContent = "Add Note";
+  notesAddButton.className = "notes-add-btn";
   notesAddButton.addEventListener("click", () => {
     addNote(checklistDiv.id);
   });
 
   notesCancelButton = document.createElement("button");
   notesCancelButton.textContent = "Cancel Note";
+  notesCancelButton.className = "notes-cancel-btn";
   notesCancelButton.addEventListener("click", cancelNote);
 
   notesForm.append(notesInput, notesAddButton, notesCancelButton);
@@ -111,6 +122,10 @@ const createNotes = () => {
 
 const addTask = (taskID) => {
   const task = taskNameInput.value;
+  if (!task) {
+    alert("Write a task to add");
+    return;
+  }
   projectArray[taskID]["checklist"].push(task);
   console.log(taskID);
 
@@ -134,14 +149,16 @@ const taskRender = (taskArray) => {
 
     taskName = document.createElement("div");
     taskName.textContent = taskArray[i];
+    taskName.className = "task-name";
 
     const deleteTask = document.createElement("div");
     deleteTask.textContent = "×";
+    deleteTask.className = "delete-task";
     deleteTask.addEventListener("click", () => {
       removeTask(taskDiv.id, taskArray);
     });
 
-    taskDiv.append(taskName, deleteTask);
+    taskDiv.append(deleteTask, taskName);
     checklistDiv.append(taskDiv);
   }
 
@@ -158,6 +175,10 @@ const removeTask = (taskID, taskArray) => {
 
 const addNote = (noteID) => {
   const note = notesInput.value;
+  if (!note) {
+    alert("Write a note to add");
+    return;
+  }
   projectArray[noteID]["notes"].push(note);
   console.log(projectArray);
 
@@ -184,18 +205,20 @@ const noteRender = (notesArray) => {
 
     const deleteNote = document.createElement("div");
     deleteNote.textContent = "×";
+    deleteNote.className = "delete-note";
     deleteNote.addEventListener("click", () => {
       removeNote(noteDiv.id, notesArray);
     });
 
     noteName = document.createElement("div");
     noteName.textContent = notesArray[i];
+    noteName.className = "note-name";
 
     noteDiv.append(deleteNote, noteName);
     notesButtonDiv.append(noteDiv);
   }
 
-  notesButtonDiv.append(notesButton);
+  notesButtonDiv.prepend(notesButton);
 };
 
 const removeNote = (noteID, notesArray) => {
