@@ -1,8 +1,8 @@
-import { projectArray } from "./form";
+//import { projectArray } from "./form";
 import { format, getWeek } from "date-fns";
 import detailsRender from "./projectDetails";
 
-const topPriority = () => {
+const topPriority = (projectArray) => {
   document.querySelector(".project-details").style.display = "none";
   const priorityDetails = document.querySelector(".priority-details");
   priorityDetails.style.display = "block";
@@ -28,7 +28,7 @@ const topPriority = () => {
   }
 };
 
-const todayTask = () => {
+const todayTask = (projectArray) => {
   document.querySelector(".project-details").style.display = "none";
   const priorityDetails = document.querySelector(".priority-details");
   priorityDetails.style.display = "block";
@@ -60,7 +60,7 @@ const todayTask = () => {
   }
 };
 
-const weekTask = () => {
+const weekTask = (projectArray) => {
   document.querySelector(".project-details").style.display = "none";
   const priorityDetails = document.querySelector(".priority-details");
   priorityDetails.style.display = "block";

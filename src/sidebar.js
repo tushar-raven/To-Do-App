@@ -1,5 +1,6 @@
 import openEditForm from "./editForm";
 import detailsRender from "./projectDetails";
+import { updateLS, getLS } from "./form";
 
 const projectNameRender = (projectArray) => {
   const projectList = document.querySelector(".project-list");
@@ -24,7 +25,8 @@ const projectNameRender = (projectArray) => {
     editButton.setAttribute("id", `${i}`);
     editButton.textContent = "Edit";
     editButton.addEventListener("click", (e) => {
-      openEditForm(e.target.id);
+      let returnedArray = getLS();
+      openEditForm(e.target.id, returnedArray);
     });
 
     const deleteButton = document.createElement("button");
@@ -48,8 +50,10 @@ const deleteProject = (projectArray, nameDiv) => {
   projectArray.splice(uniqueID, 1);
   nameDiv.remove();
 
-  projectNameRender(projectArray);
-  console.log(projectArray);
+  updateLS(projectArray);
+  let returnedArray = getLS();
+
+  projectNameRender(returnedArray);
 };
 
 export default projectNameRender;

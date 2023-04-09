@@ -1,31 +1,32 @@
-import { projectArray } from "./form";
 import projectNameRender from "./sidebar";
+import { updateLS, getLS } from "./form";
 
-const openEditForm = (uniqueID) => {
+const openEditForm = (uniqueID, returnedArray) => {
   editProjectForm.style.display = "flex";
   editFormBox.style.display = "flex";
 
-  document.querySelector("#edit-title").value = projectArray[uniqueID]["title"];
+  document.querySelector("#edit-title").value =
+    returnedArray[uniqueID]["title"];
 
   document.querySelector("#edit-description").value =
-    projectArray[uniqueID]["description"];
+    returnedArray[uniqueID]["description"];
 
-  let boolPriority = projectArray[uniqueID]["priority"] === "true";
+  let boolPriority = returnedArray[uniqueID]["priority"] === "true";
   document.querySelector("#edit-priority").checked = boolPriority;
 
   document.querySelector("#edit-date").value =
-    projectArray[uniqueID]["deadline"];
+    returnedArray[uniqueID]["deadline"];
 
   const editDoneButton = document.querySelector("#edit-btn");
   editDoneButton.addEventListener("click", (e) => {
-    editProjectDetails(e, uniqueID);
+    editProjectDetails(e, uniqueID, returnedArray);
   });
 
   const editCancelButton = document.querySelector("#edit-cancel-btn");
   editCancelButton.addEventListener("click", closeEditForm);
 };
 
-const editProjectDetails = (e, uniqueID) => {
+const editProjectDetails = (e, uniqueID, projectArray) => {
   e.preventDefault(e);
 
   const newTitle = document.querySelector("#edit-title").value;
@@ -38,7 +39,10 @@ const editProjectDetails = (e, uniqueID) => {
   projectArray[uniqueID]["priority"] = newPriority.toString();
   projectArray[uniqueID]["deadline"] = newDeadline;
 
-  projectNameRender(projectArray);
+  updateLS(projectArray);
+  let returnedArray = getLS();
+
+  projectNameRender(returnedArray);
 
   editProjectForm.style.display = "none";
   editFormBox.style.display = "none";

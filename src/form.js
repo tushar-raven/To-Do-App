@@ -1,5 +1,10 @@
 import projectNameRender from "./sidebar";
 
+let returnedArray = getLS();
+if (returnedArray) {
+  projectNameRender(returnedArray);
+}
+
 const openForm = () => {
   addProjectForm.style.display = "flex";
   formBox.style.display = "flex";
@@ -42,11 +47,27 @@ const addFormDetails = (e) => {
     `${deadline}`
   );
 
-  projectArray.push(project);
-  console.log(projectArray);
+  let returnedArray = getLS();
+  if (!returnedArray) {
+    projectArray.push(project);
+    updateLS(projectArray);
+  } else {
+    returnedArray.push(project);
+    updateLS(returnedArray);
+  }
+  returnedArray = getLS();
 
-  projectNameRender(projectArray);
+  projectNameRender(returnedArray);
 };
+
+function updateLS(projectArray) {
+  localStorage.setItem("projectArray", JSON.stringify(projectArray));
+}
+
+function getLS() {
+  const a = localStorage.getItem("projectArray");
+  return JSON.parse(a);
+}
 
 let projectArray = [];
 
@@ -66,3 +87,4 @@ const formBox = document.querySelector(".form-box");
 
 export default openForm;
 export { projectArray };
+export { updateLS, getLS };
