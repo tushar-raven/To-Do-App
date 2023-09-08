@@ -23,12 +23,14 @@ const projectNameRender = (projectArray) => {
     const editButton = document.createElement("button");
     editButton.setAttribute("id", `${i}`);
     editButton.textContent = "Edit";
+    editButton.className = "edit-button";
     editButton.addEventListener("click", (e) => {
       openEditForm(e.target.id);
     });
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
+    deleteButton.className = "del-button";
     deleteButton.addEventListener("click", () => {
       deleteProject(projectArray, nameDiv);
     });

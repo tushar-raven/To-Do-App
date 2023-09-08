@@ -291,3 +291,16 @@ h1 {
   font-size: 28px;
   margin: 10px 0px;
 }
+
+.edit-button,
+.del-button {
+  color: white;
+  background-color: #228b22;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+.del-button {
+  background-color: #d22b2b;
+}
